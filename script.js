@@ -17,7 +17,7 @@ function getWeeksBetween(startDate, endDate) {
     const days = timeDiff / (1000 * 3600 * 24);
 
     // Return the number of full weeks (rounding down to the nearest whole number)
-    return Math.floor(days / 7);
+    return Math.ceil(days / 7);
 }
 
 function calcMapWidth(weeks, cellWidth, cellGap) {
@@ -32,7 +32,7 @@ function generateCalendar() {
     
     // Calculate the oldest day to go back 6 months
     let oldestDay = new Date(today); // Copy the current date
-    oldestDay.setMonth(today.getMonth() - 6); // Subtract 6 months
+    oldestDay.setMonth(today.getMonth() - 18); // Subtract 6 months
 
     const nWeeks = getWeeksBetween(oldestDay, today); // Get number of weeks between the two dates
     
