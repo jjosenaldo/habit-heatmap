@@ -21,6 +21,12 @@ h1 {
     margin-bottom: 10px; 
 }
 
+.day-before {
+    position: absolute;
+    text-align: center;
+    font-size: 10px;
+}
+
 .month-label {
     position: absolute;
     top: -20px; /* Adjust to position above the week */

@@ -52,6 +52,7 @@ const renderCalendar = () => {
     const weeks = generateCalendar();
     const monthHeader = document.querySelector('.month-header');
     const heatmapContainer = document.querySelector('.heatmap');
+    const daysBefore = document.querySelector('.day-before');
     const today = getCurrentDate(); // Get current date for comparison
     const cellWidth = 20;
     const cellGap = 3;
@@ -63,6 +64,13 @@ const renderCalendar = () => {
     weeks.forEach((weekStart,index) => {
         const weekColumn = document.createElement('div');
         weekColumn.className = 'week';
+
+        const dayBefore = document.createElement('div');
+        dayBefore.className = 'day-before';
+        dayBefore.textContent = weekStart.getDate();
+        dayBefore.style.left = `${calcMonthLabelInc(index)}px`; // Position it above the column
+        dayBefore.style.width = `${cellWidth}px`;
+        daysBefore.appendChild(dayBefore);
 
         if (currentMonth !== weekStart.getMonth()) {
             // Only add a new month label if this is the first week of a new month
@@ -98,7 +106,9 @@ const renderCalendar = () => {
 
         heatmapContainer.appendChild(weekColumn);
     });
-    monthHeader.style.width = `${calcMapWidth(weeks,cellWidth,cellGap)}px`;  // Set a new width (e.g., 500px)
+    let mapWidth = calcMapWidth(weeks,cellWidth,cellGap); 
+    monthHeader.style.width = `${mapWidth}px`;  // Set a new width (e.g., 500px)
+    daysBefore.style.width = `${mapWidth}px`;  // Set a new width (e.g., 500px)
 };
 
 // Save completion status to localStorage
